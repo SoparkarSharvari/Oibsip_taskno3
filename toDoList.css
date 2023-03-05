@@ -1,0 +1,139 @@
+body{
+    margin: 20px;
+    background-image:linear-gradient(to bottom right, rgb(231, 56, 114), rgb(243, 139, 174));
+    height: 750px;
+}
+.heading{
+    background-color: black;
+    color:rgb(240, 86, 138) ;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 50px;
+}
+#title{
+    font-style: italic;
+}
+#discription{
+    size: 30px;
+    color: rgb(35, 35, 35);
+}
+#addBtn ,#saveNewTasksId ,#saveBtn{ 
+    align-content: right;
+    background-color: rgb(254, 203, 81) ;
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    margin-left: 10px;
+}
+#closePopUp{
+    align-content :right;
+    background-color: rgb(243, 71, 71) ;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+#toDoList,#pendingList,#completedList{
+    text-align: center;
+    font-style: italic;
+    font-size: 23px;
+}
+.col-xs-4 #toDoTasks{
+    background-color: rgb(235, 111, 152);
+    box-shadow: inset;
+    display: block;
+    margin: 5px;
+    border-radius: 10px;
+    width: inherit;
+    height: min-content;
+    padding-left: 5px;
+}
+#col1,#col2,#col3{
+    display: block;
+    background-color:rgb(239, 218, 225) ;
+    border-radius: 10px;
+    height: 500px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    
+}
+#addTaskPopUpDivId form{
+    background-color: rgb(240, 180, 107);
+    border-radius: 10px;
+    width: 400px;
+    height: 320px;
+    padding: 4px;
+    
+}
+#addTaskPopUpFormId input{
+    background-color:rgb(239, 218, 225) ;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 375px;
+    height: 30px;
+
+}
+
+/* input#checkbox{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+} */
+input#checkbox{
+  top: 18px;
+  left: 1250px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

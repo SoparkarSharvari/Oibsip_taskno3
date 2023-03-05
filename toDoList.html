@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TO DO LIST</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="toDoList.css" >
+         <script src="toDoList.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+        <div class="heading" id="heading">
+            <h3 id="newQuote"></h3>
+            
+        </div>
+
+        <div class="grid-container" id="grid-containerId" style="display: content;">
+            
+                <div class="col-xs-4" id="col1" >
+                    <h1 id="toDoList">TO DO LIST </h1>
+                    <button id="saveBtn" onclick="saveList(event)"> SAVE </button> 
+                    <button id="addBtn" onclick="addTaskPopUp(event)" > + </button>
+                    <div id="col1TaskContainer"></div>
+                </div>
+               
+                <div class="col-xs-4" id="col2">
+                    <h1 id="completedList">TASKS COMPLETED</h1>
+                    <div id="col2TaskContainer"></div>
+                </div>
+                <div class="col-xs-4" id="col3">
+                    <h1 id="pendingList">TASKS PENDING</h1>
+                    <div id="col3TaskContainer"></div>
+                </div>
+               
+                
+                   
+                
+        </div>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div align="center">
+                <div class="addTaskPopUpDiv"  id="addTaskPopUpDivId">
+                    <form id="addTaskPopUpFormId"> 
+                        <label style="font-style: italic;">Title</label> <br>
+                        <input type="text" placeholder="Title" id="taskTitle"><br><br>
+                        <label  style="font-style: italic;">Discription</label><br>
+                        <input type="text" placeholder="Discription about task" id="taskDiscription"><br><br>
+                        <label  style="font-style: italic;">Date of submission</label><br>
+                        <input type="date" id="submissionDate">
+                        <div style="text-align: center;">
+                            <button  id="saveNewTasksId" onclick="saveNewTask(event)">ADD</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+</div>
+    <script>
+        var toDoArray = [];
+        var completedTaskArray = [];
+        var pendingTaskArray = [];
+
+        function addTaskPopUp(event){
+            event.preventDefault();
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("addBtn");
+            var span = document.getElementsByClassName("close")[0];
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            }
+        }
+        
+    
+        function saveNewTask(event){
+            event.preventDefault();
+            var title=document.getElementById('taskTitle').value
+            var discription=document.getElementById('taskDiscription').value
+            var date=document.getElementById('submissionDate').value
+            debugger;
+            var tempVar = {};
+            tempVar["title"]= title;
+            tempVar["discription"] = discription;
+            tempVar["date"] = date;
+            toDoArray.push(tempVar);
+            document.getElementById('col1TaskContainer').innerHTML += `
+            <label class="container">
+                <div class="col-xs-4" id="toDoTasks">
+                   <h3 id="title" >${title}<input type="checkbox" class="checkboxToDo" id="checkbox" value="1" ></h3>
+                    <p id="discription">${discription} <br> ${date}</p>
+                <span class="checkmark></span> </div>
+            </label>`
+        }
+
+        function saveList(event){
+            debugger
+            event.preventDefault();
+            console.log(JSON.stringify(toDoArray));
+            console.log(JSON.stringify(completedTaskArray));
+            
+        
+            var a = document.getElementsByClassName('checkboxToDo'); 
+            for( var i = 0 ; i < a.length; i++){
+                if(a[i].checked && !completedTaskArray.includes(toDoArray[i].title)){
+                    console.log(completedTaskArray.includes(toDoArray[i].title))
+                    var tempTitle = toDoArray[i].title;
+                    var tempDiscription= toDoArray[i].discription;
+                    var tempDate = toDoArray[i].date;
+
+                    completedTaskArray.push(tempTitle);
+                    document.getElementById('col2TaskContainer').innerHTML += `
+                    <label class="container">
+                        <div class="col-xs-4" id="toDoTasks">
+                        <h3 id="title" >${tempTitle}</h3>
+                            <p id="discription">${tempDiscription} <br> ${tempDate}</p>
+                        <span class="checkmark></span> </div>
+                    </label>`
+                    
+                    //document.getElementById("col1TaskContainer").style.display = "none";
+                    //document.getElementsByClassName("container").style.display = "none";
+        
+                }
+                else{
+                    if(!a[i].checked && !pendingTaskArray.includes(toDoArray[i].title) ){
+                    var tempTitle = toDoArray[i].title;
+                    var tempDiscription= toDoArray[i].discription;
+                    var tempDate = toDoArray[i].date;
+                    pendingTaskArray.push(tempTitle);
+                    document.getElementById('col3TaskContainer').innerHTML += `
+                    <label class="container">
+                        <div class="col-xs-4" id="toDoTasks">
+                        <h3 id="title" >${tempTitle}</h3>
+                            <p id="discription">${tempDiscription} <br> ${tempDate}</p>
+                        <span class="checkmark></span> </div>
+                    </label>`
+                    }
+                }
+
+            }
+            //document.getElementById("col1TaskContainer").style.display = "content";
+        }
+    
+
+    </script>
+    </body>
+
+</html>
